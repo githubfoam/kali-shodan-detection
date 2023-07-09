@@ -17,7 +17,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Set up Docker
-      uses: docker/setup-docker@v1
+      uses: docker/setup-buildx-action@v1
 
     - name: Build and run Kali Linux container
       run: |
@@ -28,7 +28,7 @@ jobs:
 
     - name: Run a command in Kali Linux container
       run: |
-        docker exec kali_container ls -al
+        docker exec kali_container <command-to-run>
 
     - name: Stop and remove Kali Linux container
       run: |
