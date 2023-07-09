@@ -22,13 +22,13 @@ jobs:
     - name: Build and run Ubuntu container
       run: |
         docker pull ubuntu
-        docker run --tty --detach --privileged --name ubuntu_container ubuntu \
-        && docker exec ubuntu_container apt-get update \
-        && docker exec ubuntu_container apt-get install -y <package-name>  # Install any additional packages you need
+        #docker run --tty --detach --privileged --name ubuntu_container ubuntu \
+        #&& docker exec ubuntu_container apt-get update \
+        #&& docker exec ubuntu_container apt-get install -y <package-name>  # Install any additional packages you need
 
     - name: Run a command in Ubuntu container
       run: |
-        docker exec ubuntu_container <command-to-run>
+        docker exec ubuntu_container ls
 
     - name: Stop and remove Ubuntu container
       run: |
