@@ -1,0 +1,17 @@
+name: Run Kali Linux in Docker
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run-kali:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pull Kali Linux Docker image
+        uses: docker/pull-image@v2
+        with:
+          image: kalilinux/kali-rolling
+
+      - name: Run Kali Linux Docker container
+        run: docker run -it kalilinux/kali-rolling
