@@ -28,7 +28,8 @@ jobs:
 
     - name: Build and run Kali Linux container
       run: |
-        docker pull kalilinux/kali-rolling
+          docker pull kalilinux/kali-rolling \
+          && docker run --tty --detach --privileged --name kali_container kalilinux/kali-rolling 
         
     - name: Run a command in Kali Linux container
       run: |
