@@ -22,7 +22,7 @@ jobs:
     - name: Build and run Kali Linux container
       run: |
         docker pull kalilinux/kali-linux-docker
-        docker run --tty --detach --privileged --name kali_container kalilinux/kali-linux-docker
+        #docker run --tty --detach --privileged --name kali_container kalilinux/kali-linux-docker
         docker exec kali_container apt-get update
         docker exec kali_container apt-get install -y <package-name>  # Install any additional packages you need
 
