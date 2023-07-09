@@ -19,21 +19,21 @@ jobs:
     - name: Set up Docker
       uses: docker/setup-buildx-action@v1
 
-    - name: Build and run Ubuntu container
+    - name: Build and run Kali Linux container
       run: |
-        docker pull ubuntu \
-        && docker run --tty --detach --privileged --name ubuntu_container ubuntu \
-        && docker exec ubuntu_container apt-get update \
-        && docker exec ubuntu_container apt-get install -y shodan # Install any additional packages you need
+        docker pull kalilinux/kali-rolling \
+        && docker run --tty --detach --privileged --name kali_container kalilinux/kali-rolling \
+        && docker exec kali_container apt-get update \
+        && docker exec kali_container apt-get install -y shodan # Install any additional packages you need
 
-    - name: Run a command in Ubuntu container
+    - name: Run a command in Kali Linux container
       run: |
-        docker exec ubuntu_container ls
+        docker exec kali_container ls
 
-    - name: Stop and remove Ubuntu container
+    - name: Stop and remove Kali Linux container
       run: |
-        docker stop ubuntu_container
-        docker rm ubuntu_container
+        docker stop kali_container
+        docker rm kali_container
 
 
 
