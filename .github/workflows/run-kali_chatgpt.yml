@@ -24,7 +24,7 @@ jobs:
         docker pull ubuntu \
         && docker run --tty --detach --privileged --name ubuntu_container ubuntu \
         && docker exec ubuntu_container apt-get update \
-        && docker exec ubuntu_container apt-get install -y <package-name>  # Install any additional packages you need
+        && docker exec ubuntu_container apt-get install -y shodan # Install any additional packages you need
 
     - name: Run a command in Ubuntu container
       run: |
