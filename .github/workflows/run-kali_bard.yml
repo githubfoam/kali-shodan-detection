@@ -1,4 +1,4 @@
-name: Kali Linux Docker Workflow
+name: Bard Kali Linux Docker Workflow 
 
 on:
   push:
