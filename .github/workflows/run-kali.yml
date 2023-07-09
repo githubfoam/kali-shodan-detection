@@ -1,17 +1,36 @@
-name: Run Kali Linux in Docker
+name: Kali Linux Docker Workflow
+
 on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  run-kali:
+  build:
     runs-on: ubuntu-latest
-    steps:
-      - name: Pull Kali Linux Docker image
-        uses: docker/pull-image@v2
-        with:
-          image: kalilinux/kali-rolling
 
-      - name: Run Kali Linux Docker container
-        run: docker run -it kalilinux/kali-rolling
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Docker
+      uses: docker/setup-docker@v1
+
+    - name: Build and run Kali Linux container
+      run: |
+        docker pull kalilinux/kali-linux-docker
+        docker run --tty --detach --privileged --name kali_container kalilinux/kali-linux-docker
+        docker exec kali_container apt-get update
+        docker exec kali_container apt-get install -y <package-name>  # Install any additional packages you need
+
+    - name: Run a command in Kali Linux container
+      run: |
+        docker exec kali_container ls -al
+
+    - name: Stop and remove Kali Linux container
+      run: |
+        docker stop kali_container
+        docker rm kali_container
