@@ -24,15 +24,12 @@ jobs:
         docker pull kalilinux/kali-rolling \
         && docker run --tty --detach --privileged --name kali_container kalilinux/kali-rolling
 
-    - name: List installed tools in Kali Linux container
+    - name: Install Shodan in Kali Linux container
       run: |
-        docker exec kali_container apt list --installed
+        docker exec kali_container apt-get update
+        docker exec kali_container apt-get install -y shodan
 
     - name: Stop and remove Kali Linux container
       run: |
         docker stop kali_container
         docker rm kali_container
-
-
-
-
